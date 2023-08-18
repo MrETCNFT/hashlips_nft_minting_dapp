@@ -81,13 +81,13 @@ export const connect = () => {
           });
           // Add listeners end
         } else {
-          dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME}.`));
+          dispatch(connectFailed(`Please Switch To The Great ${CONFIG.NETWORK.NAME} Network.`));
         }
       } catch (err) {
-        dispatch(connectFailed("Something went wrong."));
+        dispatch(connectFailed("🤔 Whoops, Something went wrong."));
       }
     } else {
-      dispatch(connectFailed("Install Metamask."));
+      dispatch(connectFailed("🦊 Please Install Metamask."));
     }
   };
 };

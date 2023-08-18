@@ -99,24 +99,24 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
-  const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
+  const [feedback, setFeedback] = useState(`Max 20 Prime Apes/Mint Transaction.`);
   const [mintAmount, setMintAmount] = useState(1);
   const [CONFIG, SET_CONFIG] = useState({
-    CONTRACT_ADDRESS: "",
-    SCAN_LINK: "",
+    CONTRACT_ADDRESS: "0x8A616E6C717F3117B48E9C6E55aaAFc9c706711d",
+    SCAN_LINK: "https://blockscout.com/etc/mainnet/address/0x8A616E6C717F3117B48E9C6E55aaAFc9c706711d",
     NETWORK: {
-      NAME: "",
-      SYMBOL: "",
-      ID: 0,
+      NAME: "Ethereum Classic",
+      SYMBOL: "ETC",
+      ID: 1,
     },
-    NFT_NAME: "",
-    SYMBOL: "",
-    MAX_SUPPLY: 1,
-    WEI_COST: 0,
-    DISPLAY_COST: 0,
-    GAS_LIMIT: 0,
-    MARKETPLACE: "",
-    MARKETPLACE_LINK: "",
+    NFT_NAME: "ETC Prime Apes Society",
+    SYMBOL: "ETCPRIME",
+    MAX_SUPPLY: 11111,
+    WEI_COST: 350000000000000000,
+    DISPLAY_COST: 0.35,
+    GAS_LIMIT: 300000,
+    MARKETPLACE: "ETC Planets",
+    MARKETPLACE_LINK: "https://",
     SHOW_BACKGROUND: false,
   });
 
@@ -127,10 +127,10 @@ function App() {
     let totalGasLimit = String(gasLimit * mintAmount);
     console.log("Cost: ", totalCostWei);
     console.log("Gas limit: ", totalGasLimit);
-    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    setFeedback(`Minting ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(mintAmount)
+    .mint(mintAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -139,13 +139,13 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
+        setFeedback("🤔 Oops, something went wrong. Please try again.");
         setClaimingNft(false);
       })
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
+          `🦍 OoOo AhAh Congrats! Input NFT #ID(S) To View Your Apes In Metamask 🦊. You May Buy & Sell Apes on The High Quality ETC Planets & BitKeep NFT Marketplace!`
         );
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
@@ -162,8 +162,8 @@ function App() {
 
   const incrementMintAmount = () => {
     let newMintAmount = mintAmount + 1;
-    if (newMintAmount > 10) {
-      newMintAmount = 10;
+    if (newMintAmount > 20) {
+      newMintAmount = 20;
     }
     setMintAmount(newMintAmount);
   };
@@ -199,7 +199,7 @@ function App() {
         flex={1}
         ai={"center"}
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
-        image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
+        image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.gif" : null}
       >
         <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
         <s.SpacerSmall />
@@ -229,21 +229,23 @@ function App() {
               }}
             >
               {data.totalSupply} / {CONFIG.MAX_SUPPLY}
-            </s.TextTitle>
-            <s.TextDescription
+            </s.TextTitle> - Total Prime Apes Minted -
+            <s.TextDescription 
               style={{
                 textAlign: "center",
                 color: "var(--primary-text)",
               }}
+              
             >
+               <s.SpacerMedium />
               <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
                 {truncate(CONFIG.CONTRACT_ADDRESS, 15)}
               </StyledLink>
             </s.TextDescription>
             <s.SpacerSmall />
-            {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
-              <>
-                <s.TextTitle
+            {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? ( 
+              <> 
+                <s.TextTitle 
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
                   The sale has ended.
@@ -263,16 +265,84 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
-                  {CONFIG.NETWORK.SYMBOL}.
+                  🦍 1 {CONFIG.SYMBOL} = {CONFIG.DISPLAY_COST}{" "}
+                  {CONFIG.NETWORK.SYMBOL}/Mint 🦍
+                
                 </s.TextTitle>
-                <s.SpacerXSmall />
+                <s.SpacerLarge />
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Excluding gas fees.
-                </s.TextDescription>
+                ETC Army, The Time Is Now!
                 <s.SpacerSmall />
+                Oo Oo Ahh Ahh! The ETC Prime Apes Revolution Has Begun!!! 
+                <s.SpacerSmall />
+                 ( Connect Below For LIVE Mint Count ) 
+                 <s.SpacerLarge />
+                 <s.SpacerLarge />
+                  x WELCOME TO THE HOME OF THE ETHEREUM CLASSIC PRIME APE SOCIETY x
+                  <s.SpacerLarge />
+                  🦍🔥🍌🔥🍌🔥🍌🔥🍌🦍
+                  <s.SpacerLarge />
+                 ---------------
+               <s.SpacerMedium />
+                 A Premium Collection of 11.1k Bad Ass, Epic Prime Apes - Unlocking Real Exclusive Communitys & Rewards! 
+                  <s.SpacerLarge />
+                  All 11.1k Prime Ape Society Members Have Been Unleashed on the Blockchain! Grab em' while you can - Let's Mint Out, Raise The Sale Volume & Send The Floor ! 🚀
+                  <s.SpacerLarge />
+                   The ETC Prime Apes are of The 1st Hi-Def Premium Quality ERC-721 Art Collections to Exist on The Immutable {CONFIG.NETWORK.NAME} Blockchain.💚
+                  <s.SpacerLarge />
+                 <s.SpacerLarge />
+                  ---------------
+                  <s.SpacerMedium />
+                  ✅ - Blockscout Verified ERC-721 Smart Contract.
+               <s.SpacerMedium />
+                  ✅ - 100% Fair & Equal Distribution ALWAYS.
+                  <s.SpacerMedium />
+                  ✅ - Unique and Provably Rare Apes
+                  <s.SpacerMedium />
+                  ✅ - Legendary & Living on The Greatest Blockchain in History.
+                  <s.SpacerMedium />
+                  ✅ - Immediately Buy & Sell Your Apes on Our Epic BitKeep™️ NFT Marketplace - Simply Search & Add Our Contract Ox To View, List or Buy!
+                  <s.SpacerMedium />
+                  ✅ - Hold NFTs For Epic 1 of A Kind IRL Rewards (Q2 2023):
+                  <s.SpacerSmall />
+                  Frequent Giveaways, Airdrops, Plus Participation In An Ever Growing Jam-Packed Community!
+                  <s.SpacerLarge />
+                  <s.SpacerLarge />
+                  <s.SpacerLarge />
+              Apes Unite With A Collection For The ETCNFT Books!
+               <s.SpacerXSmall />
+                💚 🦍 APE FOLLOW APE 🦍 💚
+               <s.SpacerXSmall />
+               ---------------
+               <s.SpacerMedium />
+               We are beyond hyped to walk amongst the other great Primate Collections on ETC. All Apes Coexist on the ETC Blockchain Jungle. 
+               What makes us special? Within our collection each and every Prime Ape is Unique and Sought after with no two single apes alike. 
+               <s.SpacerMedium />
+               - Over 288+ Insane Originally Hand Sketched Attributes 
+               <s.SpacerMedium />
+               - Each Prime Ape NFT Icludes 9 Layers of Traits - From Common to Extremely Rare!
+               <s.SpacerMedium />
+              - Out of 11,111 NFT's , there is > 40 Instances of some Extremely Rare Traits! 🦍🔥
+              <s.SpacerMedium />
+              - This Includes Ultra-Rare Unique Prime Apes Such as: Joker Ape, Predator Ape, Apacolyptic Ape, Cage Fighter, Squid Game Ape & More! 
+                  <s.SpacerMedium />
+             PERMA BOUNTY: Mint Any Ultra-Rare ETC Prime Ape above, Let Us Know & Get 1 ETC Airdropped!
+               <s.SpacerLarge />
+               <s.SpacerLarge />
+               <s.SpacerLarge />
+               🍀 MAY YOUR MINTS BE RARE, HAPPY MINTING!🍀
+               <s.SpacerXSmall />
+               Sincerely, The ETC Prime Apes Dev Team 🤝
+               <s.SpacerLarge />
+               <s.SpacerXSmall />
+               ---------------
+               <s.SpacerMedium />
+               We Are Unstoppable! Thank You For The Massive Support!
+               <s.SpacerMedium />
+                </s.TextDescription>
+                <s.SpacerLarge />
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
                   <s.Container ai={"center"} jc={"center"}>
@@ -282,17 +352,20 @@ function App() {
                         color: "var(--accent-text)",
                       }}
                     >
-                      Connect to the {CONFIG.NETWORK.NAME} network
+                      <s.SpacerSmall />
+                      <s.SpacerSmall />
+                      ⏳ HURRY, APES GOING FAST! ⏳
+                      <s.SpacerSmall />
                     </s.TextDescription>
-                    <s.SpacerSmall />
+                    <s.SpacerLarge />
                     <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
                         dispatch(connect());
                         getData();
                       }}
-                    >
-                      CONNECT
+                    >                 
+                      Connect To Mint
                     </StyledButton>
                     {blockchain.errorMsg !== "" ? (
                       <>
@@ -360,7 +433,7 @@ function App() {
                           getData();
                         }}
                       >
-                        {claimingNft ? "BUSY" : "BUY"}
+                        {claimingNft ? "Grabbing ETCPRIME.." : "Mint Apes Now!"}
                       </StyledButton>
                     </s.Container>
                   </>
@@ -386,9 +459,12 @@ function App() {
               color: "var(--primary-text)",
             }}
           >
-            Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. Please note:
-            Once you make the purchase, you cannot undo this action.
+             📍 Please Join The Ape Troop On Telegram To Keep Up 📍
+             <s.SpacerMedium />
+            <s.SpacerMedium />
+             We Thank you, Sincerely.
+             <s.SpacerLarge />
+            Once Minted, this action is immutable.
           </s.TextDescription>
           <s.SpacerSmall />
           <s.TextDescription
@@ -397,9 +473,8 @@ function App() {
               color: "var(--primary-text)",
             }}
           >
-            We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
-            successfully mint your NFT. We recommend that you don't lower the
-            gas limit.
+           Gas is set to {CONFIG.GAS_LIMIT} to ensure the contract to
+            successfully Mint your Epic ETC Prime Apes.🦍
           </s.TextDescription>
         </s.Container>
       </s.Container>
